@@ -1,0 +1,9 @@
+<h2>Wrapper</h2>
+<form [formGroup]="form" (ngSubmit)="submitted()">
+  <mat-form-field floatLabel="always" appearance="outline">
+    <mat-label>Wrapper</mat-label>
+    <input matInput [formControl]="wrapperControl" [required]="true" />
+  </mat-form-field>
+  <app-parent></app-parent>
+  <button type="submit">Submit</button>
+</form>

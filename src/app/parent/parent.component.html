@@ -1,0 +1,8 @@
+<h2>Parent</h2>
+<form [formGroup]="form">
+  <mat-form-field floatLabel="always" appearance="outline">
+    <mat-label>Test</mat-label>
+    <input matInput formControlName="parentControl" required />
+  </mat-form-field>
+  <app-child></app-child>
+</form>
