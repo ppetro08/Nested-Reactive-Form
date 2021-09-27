@@ -1,45 +1,23 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import {
-  AbstractControl,
-  ControlContainer,
   FormControl,
   FormGroup,
-  FormGroupDirective,
-  ValidationErrors,
 } from '@angular/forms';
+import { ChildFormComponent } from '../form-group.directive';
 
 @Component({
   selector: 'app-parent',
   templateUrl: './parent.component.html',
   styleUrls: ['./parent.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  viewProviders: [
-    {
-      provide: ControlContainer,
-      useExisting: FormGroupDirective,
-    },
-  ],
 })
-export class ParentComponent {
-  parentFormGroup: FormGroup;
-
+export class ParentComponent extends ChildFormComponent {
   form: FormGroup;
 
-  parentControl = new FormControl(undefined, this.validatorFn());
-
-  constructor(private parent: FormGroupDirective) {}
-
-  ngOnInit(): void {
-    this.parentFormGroup = this.parent.form;
+  addControls(): void {
     this.form = new FormGroup({
-      parentControl: this.parentControl,
+      parentControl: new FormControl(null),
     });
-    this.parentFormGroup.addControl('parent', this.form);
-  }
-
-  validatorFn(): ValidationErrors | null {
-    return (control: AbstractControl): ValidationErrors | null => {
-      return !control.valid ? { oof: 'oof' } : null;
-    };
+    this.parentForm.addControl('parent', this.form);
   }
 }

@@ -2,7 +2,6 @@ import {
   ChangeDetectorRef,
   Component,
   Directive,
-  Input,
   OnDestroy,
   OnInit,
   Optional,
